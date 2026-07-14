@@ -21,6 +21,13 @@ class Produto(models.Model):
         verbose_name="Preço (R$)"
     )
 
+    # Data de criação do produto para relatórios
+    data_cadastro = models.DateTimeField(
+        auto_now_add=True,
+        null=True,
+        verbose_name="Data de Cadastro"
+    )
+
     def __str__(self):
         """
         Método mágico que define como o objeto é convertido para texto.

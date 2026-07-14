@@ -1,7 +1,9 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Sum
+from django.utils.timezone import now
 from .models import Produto
 from .forms import ProdutoForm
 
@@ -59,3 +61,30 @@ class DeletarProduto(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('produto_list')
     login_url = 'login'
     context_object_name = 'produto' # Nome da variável para usar no template HTML
+
+# View para o Dashboard
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'core/dashboard.html'
+    login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        hoje = now().date()
+        
+        # Total de produtos
+        total_produtos = Produto.objects.count()
+        
+        # Produtos cadastrados hoje
+        produtos_hoje = Produto.objects.filter(data_cadastro__date=hoje).count()
+        
+        # Valor total em estoque (soma de todos os valores)
+        valor_estoque = Produto.objects.aggregate(Sum('valor'))['valor__sum'] or 0
+        
+        # Últimos 5 produtos
+        ultimos_produtos = Produto.objects.order_by('-data_cadastro')[:5]
+
+        context['total_produtos'] = total_produtos
+        context['produtos_hoje'] = produtos_hoje
+        context['valor_estoque'] = valor_estoque
+        context['ultimos_produtos'] = ultimos_produtos
+        return context

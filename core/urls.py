@@ -1,9 +1,12 @@
 from django.urls import path
-from .views import ListarProdutos, CriarProduto, EditarProduto, DeletarProduto, CadastroUsuario
+from .views import ListarProdutos, CriarProduto, EditarProduto, DeletarProduto, CadastroUsuario, DashboardView
 
 urlpatterns = [
-    # Rota Inicial (Lista de Produtos)
-    path('', ListarProdutos.as_view(), name='produto_list'),
+    # Dashboard (Página Inicial)
+    path('', DashboardView.as_view(), name='dashboard'),
+    
+    # Rota de Produtos
+    path('produtos/', ListarProdutos.as_view(), name='produto_list'),
     
     # Rotas de CRUD
     path('novo/', CriarProduto.as_view(), name='produto_create'),
