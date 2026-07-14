@@ -74,12 +74,31 @@ WSGI_APPLICATION = 'projeto_crud.wsgi.application'
 # Banco de Dados
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+import os
+import shutil
+
+if os.environ.get('VERCEL') == '1':
+    # Vercel filesystem is read-only except for /tmp
+    db_path = '/tmp/db.sqlite3'
+    # Copy the local db to /tmp on cold start so tables exist
+    if not os.path.exists(db_path):
+        source_db = BASE_DIR / 'db.sqlite3'
+        if os.path.exists(source_db):
+            shutil.copyfile(source_db, db_path)
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': db_path,
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Validação de senhas
