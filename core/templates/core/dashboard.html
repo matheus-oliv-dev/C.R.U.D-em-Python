@@ -5,8 +5,8 @@
 {% block content %}
 <div class="row mb-4">
     <div class="col-12">
-        <h2 class="fw-bold mb-3">Visão Geral do Estoque</h2>
-        <p class="text-white-50">Acompanhe as principais métricas dos seus produtos.</p>
+        <h2 class="fw-bold mb-3" data-i18n="dash_title">Visão Geral do Estoque</h2>
+        <p class="text-white-50" data-i18n="dash_subtitle">Acompanhe as principais métricas dos seus produtos.</p>
     </div>
 </div>
 
@@ -14,7 +14,7 @@
     <!-- Card: Total Produtos -->
     <div class="col-md-4 mb-4 mb-md-0">
         <div class="glass-panel text-center h-100 d-flex flex-column justify-content-center">
-            <h5 class="text-white-50 fw-normal mb-2">Total de Produtos</h5>
+            <h5 class="text-white-50 fw-normal mb-2" data-i18n="dash_total">Total de Produtos</h5>
             <h1 class="display-4 fw-bold text-white mb-0">{{ total_produtos }}</h1>
         </div>
     </div>
@@ -22,7 +22,7 @@
     <!-- Card: Produtos Hoje -->
     <div class="col-md-4 mb-4 mb-md-0">
         <div class="glass-panel text-center h-100 d-flex flex-column justify-content-center" style="border-top: 4px solid var(--primary-color);">
-            <h5 class="text-white-50 fw-normal mb-2">Adicionados Hoje</h5>
+            <h5 class="text-white-50 fw-normal mb-2" data-i18n="dash_hoje">Adicionados Hoje</h5>
             <h1 class="display-4 fw-bold text-white mb-0">{{ produtos_hoje }}</h1>
         </div>
     </div>
@@ -30,7 +30,7 @@
     <!-- Card: Valor Total -->
     <div class="col-md-4">
         <div class="glass-panel text-center h-100 d-flex flex-column justify-content-center">
-            <h5 class="text-white-50 fw-normal mb-2">Valor em Estoque</h5>
+            <h5 class="text-white-50 fw-normal mb-2" data-i18n="dash_valor">Valor em Estoque</h5>
             <h2 class="fw-bold mb-0" style="color: #34d399;">R$ {{ valor_estoque|floatformat:2 }}</h2>
         </div>
     </div>
@@ -40,17 +40,17 @@
     <div class="col-md-12">
         <div class="glass-panel">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="mb-0 fw-bold">Últimos Produtos Cadastrados</h4>
-                <a href="{% url 'produto_list' %}" class="btn btn-outline-custom btn-sm">Ver todos</a>
+                <h4 class="mb-0 fw-bold" data-i18n="dash_ultimos">Últimos Produtos Cadastrados</h4>
+                <a href="{% url 'produto_list' %}" class="btn btn-outline-custom btn-sm" data-i18n="dash_ver_todos">Ver todos</a>
             </div>
             
             <div class="table-responsive">
                 <table class="table table-custom">
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Data de Cadastro</th>
-                            <th class="text-end">Valor</th>
+                            <th data-i18n="table_nome">Nome</th>
+                            <th data-i18n="table_data">Data de Cadastro</th>
+                            <th class="text-end" data-i18n="table_valor">Valor</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,7 +62,7 @@
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="3" class="text-center py-4 text-white-50">Nenhum produto recente.</td>
+                            <td colspan="3" class="text-center py-4 text-white-50" data-i18n="table_empty_dash">Nenhum produto recente.</td>
                         </tr>
                         {% endfor %}
                     </tbody>

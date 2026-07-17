@@ -7,17 +7,17 @@
     <div class="col-md-6 offset-md-3">
         <div class="card card-custom border-danger border-opacity-25 mt-4">
             <div class="card-header border-0 pb-0 pt-4">
-                <h4 class="card-title text-danger fw-bold mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i>Confirmar Exclusão</h4>
+                <h4 class="card-title text-danger fw-bold mb-0" data-i18n="delete_title"><i class="bi bi-exclamation-triangle-fill me-2"></i> <span class="i18n-text">Confirmar Exclusão</span></h4>
             </div>
             <div class="card-body">
-                <p class="text-white-50">Tem certeza que deseja excluir o produto <strong class="text-white">{{ object.nome_produto }}</strong>?</p>
-                <p class="text-white-50 small">Esta ação é permanente e não poderá ser desfeita.</p>
+                <p class="text-white-50"><span data-i18n="delete_msg" class="i18n-text">Tem certeza que deseja excluir o produto</span> <strong class="text-white">{{ object.nome_produto }}</strong>?</p>
+                <p class="text-white-50 small" data-i18n="delete_warning">Esta ação é permanente e não poderá ser desfeita.</p>
                 
                 <form method="post" class="mt-4">
                     {% csrf_token %}
                     <div class="d-grid gap-3 d-md-flex justify-content-md-end">
-                        <a href="{% url 'produto_list' %}" class="btn btn-outline-custom px-4">Cancelar</a>
-                        <button type="submit" class="btn btn-danger-custom px-4">Sim, Excluir</button>
+                        <a href="{% url 'produto_list' %}" class="btn btn-outline-custom px-4" data-i18n="form_cancel">Cancelar</a>
+                        <button type="submit" class="btn btn-danger-custom px-4" data-i18n="delete_btn">Sim, Excluir</button>
                     </div>
                 </form>
             </div>

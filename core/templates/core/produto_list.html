@@ -7,10 +7,10 @@
     <div class="col-md-12">
         <div class="glass-panel">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0 fw-bold">Produtos em Estoque</h2>
+                <h2 class="mb-0 fw-bold" data-i18n="list_title">Produtos em Estoque</h2>
                 {% if user.is_authenticated %}
-                <a href="{% url 'produto_create' %}" class="btn btn-primary-custom">
-                    <i class="bi bi-plus-lg me-1"></i> Novo Produto
+                <a href="{% url 'produto_create' %}" class="btn btn-primary-custom" data-i18n="list_novo">
+                    <i class="bi bi-plus-lg me-1"></i> <span class="i18n-text">Novo Produto</span>
                 </a>
                 {% endif %}
             </div>
@@ -19,9 +19,9 @@
                 <table class="table table-custom">
                     <thead>
                         <tr>
-                            <th>Nome do Produto</th>
-                            <th>Valor</th>
-                            <th class="text-end">Ações</th>
+                            <th data-i18n="table_nome">Nome do Produto</th>
+                            <th data-i18n="table_valor">Valor</th>
+                            <th class="text-end" data-i18n="table_acoes">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,14 +31,14 @@
                             <td><span class="badge bg-success bg-opacity-25 text-success px-2 py-1 fs-6">R$ {{ produto.valor }}</span></td>
                             <td class="text-end">
                                 {% if user.is_authenticated %}
-                                <a href="{% url 'produto_update' produto.pk %}" class="btn btn-warning-custom btn-action me-2">Editar</a>
-                                <a href="{% url 'produto_delete' produto.pk %}" class="btn btn-danger-custom btn-action">Excluir</a>
+                                <a href="{% url 'produto_update' produto.pk %}" class="btn btn-warning-custom btn-action me-2" data-i18n="list_editar">Editar</a>
+                                <a href="{% url 'produto_delete' produto.pk %}" class="btn btn-danger-custom btn-action" data-i18n="list_excluir">Excluir</a>
                                 {% endif %}
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="3" class="text-center py-5 text-muted">Nenhum produto cadastrado no momento.</td>
+                            <td colspan="3" class="text-center py-5 text-muted" data-i18n="list_empty">Nenhum produto cadastrado no momento.</td>
                         </tr>
                         {% endfor %}
                     </tbody>

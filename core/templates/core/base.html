@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="{% static 'js/translations.js' %}"></script>
+    <script src="{% static 'js/i18n.js' %}"></script>
 </head>
 
 <body>
@@ -26,27 +28,28 @@
                 <ul class="navbar-nav me-auto ms-lg-4">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard' %}"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a>
+                        <a class="nav-link" href="{% url 'dashboard' %}" data-i18n="nav_dashboard"><i class="bi bi-speedometer2 me-1"></i> <span class="i18n-text">Dashboard</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'produto_list' %}"><i class="bi bi-list-ul me-1"></i> Produtos</a>
+                        <a class="nav-link" href="{% url 'produto_list' %}" data-i18n="nav_produtos"><i class="bi bi-list-ul me-1"></i> <span class="i18n-text">Produtos</span></a>
                     </li>
                     {% endif %}
                 </ul>
 
                 <div class="d-flex align-items-center mt-3 mt-lg-0">
-                    <a href="https://www.matheusdev.com.br/" class="btn btn-outline-light btn-sm me-4 rounded-pill" title="Voltar ao Portfólio">
-                        <i class="bi bi-arrow-left"></i> Portfólio
+                    <button id="lang-toggle" class="btn btn-outline-light btn-sm me-3 rounded-pill" title="Mudar Idioma">🇺🇸 EN</button>
+                    <a href="https://www.matheusdev.com.br/" class="btn btn-outline-light btn-sm me-4 rounded-pill" title="Voltar ao Portfólio" data-i18n="nav_portfolio">
+                        <i class="bi bi-arrow-left"></i> <span class="i18n-text">Portfólio</span>
                     </a>
                     {% if user.is_authenticated %}
-                    <span class="text-light me-4 fw-light">Olá, <strong class="text-white">{{ user.username }}</strong></span>
+                    <span class="text-light me-4 fw-light"><span data-i18n="nav_ola" class="i18n-text">Olá</span>, <strong class="text-white">{{ user.username }}</strong></span>
                     <form method="post" action="{% url 'logout' %}" class="d-inline">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-custom btn-sm"><i class="bi bi-box-arrow-right"></i> Sair</button>
+                        <button type="submit" class="btn btn-outline-custom btn-sm" data-i18n="nav_sair"><i class="bi bi-box-arrow-right"></i> <span class="i18n-text">Sair</span></button>
                     </form>
                     {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-outline-custom btn-sm me-3">Entrar</a>
-                    <a href="{% url 'signup' %}" class="btn btn-primary-custom btn-sm">Cadastrar</a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-custom btn-sm me-3" data-i18n="nav_entrar">Entrar</a>
+                    <a href="{% url 'signup' %}" class="btn btn-primary-custom btn-sm" data-i18n="nav_cadastrar">Cadastrar</a>
                     {% endif %}
                 </div>
             </div>
