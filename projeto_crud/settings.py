@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-c)3tci=47_vtiihh*qgfwqf_-r5q8eu0k=pi@-o-+)6wfkka8_
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app', 'https://crud.matheusdev.com.br']
 
 
 # Definição de Aplicativos

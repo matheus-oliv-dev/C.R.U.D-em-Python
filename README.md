@@ -12,7 +12,7 @@ Bem-vindo ao **TechSales**! Este projeto é uma evolução completa de um script
 
 O foco deste projeto é demonstrar habilidades full-stack: desde a arquitetura de banco de dados e autenticação no backend, até a criação de uma interface de usuário premium baseada no estilo *Glassmorphism* com Dark Mode nativo.
 
-🔗 **[Acesse o projeto online no Vercel](https://c-r-u-d-em-python.vercel.app/)**
+🔗 **[Acesse o projeto online](https://crud.matheusdev.com.br/)**
 
 ---
 
