@@ -20,6 +20,9 @@ O foco deste projeto é demonstrar habilidades full-stack: desde a arquitetura d
 
 *   **Dashboard Analítico:** Visão geral com métricas calculadas em tempo real (Total de produtos, itens adicionados no dia e valor total em estoque).
 *   **Gestão de Produtos (CRUD):** Criação, leitura, atualização e exclusão completa de produtos do estoque.
+*   **Busca e Paginação:** Barra de pesquisa para filtrar itens por nome e paginação de resultados (10 em 10) garantindo alta performance.
+*   **Exportação de Relatórios:** Geração e download instantâneo da tabela de produtos em formato CSV.
+*   **Internacionalização (i18n):** Suporte nativo a múltiplos idiomas (PT-BR e EN-US) integrado na interface.
 *   **Autenticação de Usuários:** Sistema completo de login, logout e cadastro de novos usuários integrado com a segurança nativa do Django.
 *   **Interface Premium (Glassmorphism):** Design responsivo feito à mão com CSS moderno, apresentando painéis translúcidos, botões interativos e tipografia legível (Google Fonts).
 *   **Deploy Otimizado para Portfólio:** Hospedado no Vercel utilizando um banco de dados efêmero. O banco se limpa periodicamente, garantindo que recrutadores possam testar as funcionalidades de alteração/exclusão (Interactive Demo) sem comprometer permanentemente a integridade do portfólio.
