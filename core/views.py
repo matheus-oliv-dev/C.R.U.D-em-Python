@@ -1,4 +1,6 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
+import csv
+from django.http import HttpResponse
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, View
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
@@ -28,6 +30,19 @@ class ListarProdutos(LoginRequiredMixin, ListView):
     ordering = ['nome_produto'] # Ordena a lista alfabeticamente
     login_url = 'login' # Se não estiver logado, manda para cá
     context_object_name = 'produtos' # Nome da variável para usar no template HTML
+    paginate_by = 10 # Paginação: 10 itens por página
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        q = self.request.GET.get('q')
+        if q:
+            queryset = queryset.filter(nome_produto__icontains=q)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('q', '')
+        return context
 
 # View para Criar Produto (Create)
 class CriarProduto(LoginRequiredMixin, CreateView):
@@ -88,3 +103,30 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context['valor_estoque'] = valor_estoque
         context['ultimos_produtos'] = ultimos_produtos
         return context
+
+# View para Exportar Relatório em CSV
+class ExportarProdutosCSV(LoginRequiredMixin, View):
+    """
+    Gera e faz o download de um relatório CSV de todos os produtos.
+    """
+    login_url = 'login'
+
+    def get(self, request, *args, **kwargs):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="relatorio_produtos.csv"'
+
+        writer = csv.writer(response)
+        # Cabeçalho da tabela
+        writer.writerow(['ID', 'Nome do Produto', 'Valor (R$)', 'Data de Cadastro'])
+
+        # Busca produtos
+        produtos = Produto.objects.all().order_by('-data_cadastro')
+        for produto in produtos:
+            writer.writerow([
+                produto.id,
+                produto.nome_produto,
+                produto.valor,
+                produto.data_cadastro.strftime('%d/%m/%Y %H:%M') if produto.data_cadastro else ''
+            ])
+
+        return response

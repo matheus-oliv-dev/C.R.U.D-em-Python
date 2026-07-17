@@ -25,6 +25,7 @@ const translations = {
         // produto_list.html
         "list_title": "Produtos em Estoque",
         "list_novo": "Novo Produto",
+        "list_exportar": "Exportar CSV",
         "list_editar": "Editar",
         "list_excluir": "Excluir",
         "list_empty": "Nenhum produto cadastrado.",
@@ -77,6 +78,7 @@ const translations = {
         // produto_list.html
         "list_title": "Products in Stock",
         "list_novo": "New Product",
+        "list_exportar": "Export CSV",
         "list_editar": "Edit",
         "list_excluir": "Delete",
         "list_empty": "No products registered.",

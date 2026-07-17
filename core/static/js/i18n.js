@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Atualizar visual do botão
         if(langBtn) {
             if (lang === 'pt') {
-                langBtn.innerHTML = "🇺🇸 EN";
+                langBtn.innerHTML = '<i class="bi bi-globe"></i> EN-US';
                 langBtn.title = "Switch to English";
             } else {
-                langBtn.innerHTML = "🇧🇷 PT";
+                langBtn.innerHTML = '<i class="bi bi-globe"></i> PT-BR';
                 langBtn.title = "Mudar para Português";
             }
         }
