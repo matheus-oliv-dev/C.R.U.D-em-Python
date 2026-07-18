@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.RateLimitMiddleware',
 ]
 
 ROOT_URLCONF = 'projeto_crud.urls'
@@ -70,6 +71,25 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'projeto_crud.wsgi.application'
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cache de Alta Performance (Otimização para Serverless)
+# Salvamos os dados de Cache na pasta /tmp/
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/tmp/django_cache',
+        'TIMEOUT': 900, # 15 minutos
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        }
+    }
+}
 
 
 # Banco de Dados

@@ -2,6 +2,8 @@ import csv
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, View
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Sum
@@ -78,6 +80,7 @@ class DeletarProduto(LoginRequiredMixin, DeleteView):
     context_object_name = 'produto' # Nome da variável para usar no template HTML
 
 # View para o Dashboard
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'core/dashboard.html'
     login_url = 'login'

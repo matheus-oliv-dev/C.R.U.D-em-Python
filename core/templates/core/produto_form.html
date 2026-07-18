@@ -39,4 +39,49 @@
         </div>
     </div>
 </div>
+
+<script>
+// Sistema de Limite de Caracteres Duro e Dupla Verificação
+document.addEventListener("DOMContentLoaded", function() {
+    // Localiza o input gerado pelo Django cujo ID é id_nome_produto
+    const nomeInput = document.getElementById("id_nome_produto");
+    
+    if (nomeInput) {
+        // 1. Limite Duro no HTML
+        nomeInput.setAttribute("maxlength", "100");
+        
+        // 2. Elemento visual de contagem
+        const counterDiv = document.createElement("div");
+        counterDiv.className = "text-end mt-1 small";
+        counterDiv.style.color = "#a8a8a8"; 
+        counterDiv.id = "char-counter";
+        
+        // Injeta logo abaixo do input
+        nomeInput.parentNode.insertBefore(counterDiv, nomeInput.nextSibling);
+        
+        function updateCounter() {
+            // 3. Slice dinâmico no Javascript (Mesma tática do seu Flask bot)
+            let currentLength = nomeInput.value.length;
+            if (currentLength > 100) {
+                nomeInput.value = nomeInput.value.slice(0, 100);
+                currentLength = 100;
+            }
+            
+            counterDiv.textContent = currentLength + " / 100";
+            
+            // Muda de cor se chegar no limite
+            if (currentLength >= 100) {
+                counterDiv.style.color = "#f64a4a"; // Vermelho alerta
+            } else {
+                counterDiv.style.color = "#a8a8a8"; // Cinza normal
+            }
+        }
+        
+        // Aciona toda vez que o usuário digitar ou colar um texto
+        nomeInput.addEventListener("input", updateCounter);
+        // Roda uma vez no início (para a tela de "Editar Produto")
+        updateCounter();
+    }
+});
+</script>
 {% endblock %}
