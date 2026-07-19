@@ -162,3 +162,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Redirecionamento após Login/Logout
 LOGIN_REDIRECT_URL = 'produto_list'
 LOGOUT_REDIRECT_URL = 'login'
+
+# Sessão Baseada em Cookies (Serverless Friendly)
+# Resolve o problema de logout em ambientes como Vercel
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
