@@ -1,0 +1,20 @@
+[
+  {
+    "id": "F01",
+    "behavior": "i18n Client-Side (Português e Inglês)",
+    "state": "passing",
+    "evidence": "Commit edaf8d1, Navbar and forms translated via i18n.js"
+  },
+  {
+    "id": "F02",
+    "behavior": "Paginação, Busca e Relatórios CSV",
+    "state": "passing",
+    "evidence": "Commit e9faaa5, ListView updated with paginate_by and search filtering"
+  },
+  {
+    "id": "F03",
+    "behavior": "Rate Limit Nativo e Signed Cookies para Serverless",
+    "state": "passing",
+    "evidence": "Commit ffbe81c and 670c9f9, RateLimitMiddleware and Session Cookie config added"
+  }
+]
